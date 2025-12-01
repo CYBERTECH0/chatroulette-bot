@@ -14,8 +14,6 @@ from database import (
     get_user_gender
 )
 
-from psych_core.psych_pipeline import run_psychology, after_match_psych
-from psych_core.engagement_model import register_action
 
 
 # ---------------------------------------------------------
@@ -76,12 +74,7 @@ async def matchmaker(bot):
 
     u2 = partner
 
-    # PRE-PSYCHOLOGY
-    await asyncio.gather(
-        run_psychology(bot, u1),
-        run_psychology(bot, u2)
-    )
-
+    
     # realism
     await asyncio.sleep(random.uniform(0.03, 0.08))
 
@@ -104,11 +97,7 @@ async def matchmaker(bot):
     register_action(u1, "match")
     register_action(u2, "match")
 
-    # POST-MATCH "alive" lines
-    await asyncio.gather(
-        after_match_psych(bot, u1),
-        after_match_psych(bot, u2)
-    )
+    
 
 
 # ---------------------------------------------------------
